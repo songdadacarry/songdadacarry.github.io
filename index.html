@@ -1,91 +1,80 @@
-
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
+		<meta charset="utf-8" />
 		<title></title>
+		<style type="text/css">
+			#clock {
+				width: 600px;
+				height: 600px;
+				background:   url(https://bestace.github.io/fed/ppt/demos/jsBase/img/clock.jpg);
+				background-size: 100%;
+				position: relative;
+			}
+			
+			#sec {
+				width: 4px;
+				height: 200px;
+				background-color: #f00;
+				position: absolute;
+				left: 300px;
+				bottom: 300px;
+				transform-origin: 50% bottom;
+				/*transform: rotate(30deg);*/
+			}
+			#min {
+				width: 8px;
+				height: 160px;
+				background-color: darkmagenta;
+				position: absolute;
+				left: 300px;
+				bottom: 300px;
+				transform-origin: 50% bottom;
+				/*transform: rotate(30deg);*/
+			}
+			#hour {
+				width: 12px;
+				height: 120px;
+				background-color: black;
+				position: absolute;
+				left: 300px;
+				bottom: 300px;
+				transform-origin: 50% bottom;
+				/*transform: rotate(30deg);*/
+			}
+		</style>
 	</head>
-	<style type="text/css">
-		*{
-			padding: 0px;
-			border: 0px;
-			margin: 0px;
-		}
-		input{
-			display: none;
-		}
-		label{
-			display: inline-block;
-			width: 60px;
-			height: 30px;
-			text-align: center;
-			line-height: 30px;
-		}
-		.contents{
-			box-sizing: border-box;
-			width: 600px;
-			height: 480px;
-			border: 1px solid #000;
-			overflow: hidden;
-			position: relative;
-		}
-		.contents *{
-			width: 600px;
-			height: 480px;
-		}
-		#con1{
-			background-color: #ffdddd;
-		}
-		#con2{
-			background-color: #ddffdd;
-		}
-		#con3{
-			background-color: #ddddff;
-		}
-		#tab1:checked~#label1{
-			background-color: #000000;
-			color: white;
-		}
-		#tab2:checked~#label2{
-			background-color: #000000;
-			color: white;
-		}
-		#tab3:checked~#label3{
-			background-color: #000000;
-			color: white;
-		}
-		#tab1:checked~.contents #con1{
-			position: relative;
-			top: 0px;
-		}
-		#tab2:checked~.contents #con2{
-			position: relative;
-			top: -480px;
-		}
-		#tab3:checked~.contents #con3{
-			position: relative;
-			top: -960px;
-		}
-	</style>
 	<body>
-		<div class="tabs">
-			<input type="radio" checked="checked" name="tab" id="tab1"/>
-			<input type="radio" name="tab" id="tab2"/>
-			<input type="radio" name="tab" id="tab3"/>
-			<label for="tab1" id="label1">新闻</label>
-			<label for="tab2" id="label2">通知</label>
-			<label for="tab3" id="label3">公告</label>
-			<div class="contents">			
-				<div id="con1">
-					新闻内容
-				</div>
-				<div id="con2">
-					通知内容
-				</div>
-				<div id="con3">
-					公告内容
-				</div>	
-			</div>
+		<div id="clock">
+			<div id="sec"></div>
+			<div id="min"></div>
+			<div id="hour"></div>
 		</div>
+		<script>
+			var oSec = document.getElementById("sec");
+			var oMin = document.getElementById("min");
+			var oHour = document.getElementById("hour");
+			function getNow1() {
+				now = new Date();
+				var sec = now.getSeconds();
+				oSec.style.transform="rotate("+sec*6+"deg)";
+				setTimeout(getNow1, 1000);
+			}
+			getNow1();
+			function getNow2() {
+				now = new Date();
+				var min = now.getMinutes();
+				oMin.style.transform="rotate("+min*6+"deg)"
+				setTimeout(getNow2, 1000);
+			}
+			getNow2();
+			function getNow3() {
+				now = new Date();
+				var hour = now.getHours();
+				oHour.style.transform="rotate("+hour*30+"deg)"
+				setTimeout(getNow3, 1000);
+			}
+			getNow3();
+		</script>
 	</body>
 </html>
